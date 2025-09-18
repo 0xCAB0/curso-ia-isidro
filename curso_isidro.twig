@@ -1,0 +1,2598 @@
+<!DOCTYPE html>
+<html lang="es"
+class="scroll-smooth">
+<head>
+    <meta
+charset="UTF-8">
+    <meta
+name="viewport" content="width=device-width,
+initial-scale=1.0">
+    <title>Curso
+de IA para Cirujanos Vasculares (Premium)</title>
+    <script
+src="https://cdn.tailwindcss.com"></script>
+    <link
+rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+rel="preconnect" href="https://fonts.gstatic.com"
+crossorigin>
+    <link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+    <link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+rel="stylesheet">
+    <style>
+        body {
+           
+font-family: 'Inter', sans-serif;
+           
+background-color: #f0f4f8;
+            color: #334155;
+        }
+        .nav-link.active {
+           
+background-color: #1A535C;
+            color:
+white;
+           
+font-weight: 600;
+        }
+       
+.nav-link.active i {
+            color: white;
+        }
+
+.prompt-btn.active {
+           
+background-color: #0A2342;
+            color:
+white;
+           
+border-color: #0A2342;
+        }
+        .quiz-option
+{
+           
+transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+           
+position: relative;
+        }
+       
+.quiz-option.correct {
+           
+background-color: #d1fae5;
+           
+border-color: #10b981;
+            color:
+#065f46;
+        }
+       
+.quiz-option.incorrect {
+           
+background-color: #fee2e2;
+           
+border-color: #ef4444;
+            color:
+#991b1b;
+        }
+       
+.quiz-option:disabled {
+            cursor:
+not-allowed;
+            opacity:
+0.7;
+        }
+        .spinner {
+border: 4px solid #f3f3f3; border-top: 4px solid #00B5B5;
+border-radius: 50%; width: 24px; height: 24px; animation: spin 1s
+linear infinite; }
+        @keyframes
+spin {
+            0% {
+transform: rotate(0deg); }
+            100% {
+transform: rotate(360deg); }
+        }
+       
+.article-card {
+           
+background-color: white;
+            padding:
+2.5rem;
+           
+border-radius: 1.5rem;
+           
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
+rgba(0, 0, 0, 0.05);
+           
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow
+0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+       
+.article-card:hover {
+           
+transform: translateY(-5px);
+           
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px
+rgba(0, 0, 0, 0.04);
+        }
+        .card-icon {
+            color:
+#00B5B5;
+           
+font-size: 2.5rem;
+           
+margin-right: 1.5rem;
+        }
+       
+.prompt-panel {
+           
+animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes
+fadeIn {
+            from {
+opacity: 0; transform: translateY(10px); }
+            to {
+opacity: 1; transform: translateY(0); }
+        }
+        .slide-in {
+           
+animation: slideIn 0.8s ease-out;
+        }
+        @keyframes
+slideIn {
+            from {
+opacity: 0; transform: translateX(-50px); }
+            to {
+opacity: 1; transform: translateX(0); }
+        }
+        .star-rating
+label {
+           
+transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            cursor:
+pointer;
+        }
+        .star-rating
+input[type="radio"] {
+            display:
+none;
+        }
+        .star-rating
+label:hover,
+        .star-rating
+label:hover ~ label,
+        .star-rating
+input[type="radio"]:checked ~ label {
+            color:
+#00B5B5;
+        }
+        .star-rating
+label:hover {
+           
+transform: scale(1.1);
+        }
+        /* ---
+Interactive Glossary Styles --- */
+       
+.glossary-level, .glossary-term {
+           
+border-radius: 0.75rem;
+           
+overflow: hidden;
+            border:
+1px solid #e2e8f0;
+           
+transition: all 0.3s ease-in-out;
+        }
+       
+.glossary-level {
+            
+background-color: #f8fafc;
+        }
+       
+.glossary-level[open] {
+           
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0,
+0, 0, 0.06);
+        }
+       
+.glossary-level > summary {
+           
+font-size: 1.125rem;
+           
+font-weight: 700;
+           
+background-color: #f1f5f9;
+            color:
+#1e293b;
+        }
+       
+.glossary-term {
+           
+background-color: white;
+           
+margin-top: 0.75rem;
+        }
+       
+.glossary-level > summary, .glossary-term > summary {
+            cursor:
+pointer;
+            padding:
+1rem;
+           
+list-style: none; /* remove default marker */
+           
+position: relative;
+           
+padding-left: 2.75rem;
+           
+transition: background-color 0.2s ease-in-out;
+        }
+       
+.glossary-level > summary:hover, .glossary-term > summary:hover
+{
+           
+background-color: #e2e8f0;
+        }
+       
+.glossary-level > summary::before, .glossary-term >
+summary::before {
+            content:
+'\f078'; /* Font Awesome chevron-down */
+           
+font-family: 'Font Awesome 6 Free';
+           
+font-weight: 900;
+           
+position: absolute;
+            left:
+1rem;
+            top:
+50%;
+           
+transform: translateY(-50%) rotate(0deg);
+           
+transition: transform 0.3s ease-in-out;
+           
+font-size: 0.9rem;
+            color:
+#00B5B5;
+        }
+       
+.glossary-level[open] > summary::before, .glossary-term[open] >
+summary::before {
+           
+transform: translateY(-50%) rotate(-180deg);
+        }
+       
+.glossary-content {
+            padding:
+1.5rem;
+           
+font-size: 0.9rem;
+        }
+       
+.glossary-term-content {
+            padding:
+1rem 1.5rem;
+           
+border-top: 1px solid #e2e8f0;
+           
+background-color: #fdfdff;
+           
+line-height: 1.6;
+        }
+       
+.glossary-analogy {
+           
+margin-top: 0.75rem;
+            padding:
+0.75rem 1rem;
+           
+background-color: #f0fdfa;
+           
+border-left: 4px solid #14b8a6;
+           
+font-style: italic;
+            color:
+#134e4a;
+        }
+        /* Image Generator Styles */
+        .image-generator-container {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        #image-output {
+            background-color: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            min-height: 20rem; /* 320px */
+            transition: background-color 0.3s;
+        }
+        #image-output img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        #image-output .placeholder-text {
+            color: #64748b;
+        }
+    </style>
+</head>
+<body
+class="text-gray-800">
+
+    <button
+id="menu-toggle" class="lg:hidden fixed top-4 left-4
+z-50 p-2 bg-white rounded-md shadow-lg text-[#0A2342]
+focus:outline-none focus:ring-2 focus:ring-[#00B5B5]">
+        <svg
+class="w-6 h-6" fill="none" stroke="currentColor"
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"><path
+stroke-linecap="round" stroke-linejoin="round"
+stroke-width="2" d="M4 6h16M4 12h16M4
+18h16"></path></svg>
+    </button>
+    
+    <div
+id="overlay" class="fixed inset-0 bg-black
+bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+    <div
+class="flex min-h-screen">
+        <aside
+id="sidebar" class="w-72 bg-white shadow-lg p-5 fixed
+h-full z-50 overflow-y-auto transform -translate-x-full
+lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div
+class="flex justify-between items-center mb-6">
+                <h2
+class="text-2xl font-bold text-[#0A2342]">Menú del
+Curso</h2>
+               
+<button id="close-menu" class="lg:hidden
+text-gray-500 hover:text-gray-800">
+                   
+<svg class="w-6 h-6" fill="none"
+stroke="currentColor" viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"><path
+stroke-linecap="round" stroke-linejoin="round"
+stroke-width="2" d="M6 18L18 6M6 6l12
+12"></path></svg>
+               
+</button>
+            </div>
+            <nav class="space-y-1 text-sm" id="desktop-nav">
+                <a href="#intro" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-home w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Introducción</span>
+                </a>
+            
+                <h3 class="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Módulos Teóricos</h3>
+                <a href="#modulo1" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-brain w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 1: La Teoría</span>
+                </a>
+                <a href="#modulo1-5" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-coins w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 1.5: Tokens</span>
+                </a>
+                <a href="#modulo2" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-pencil-alt w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 2: El Prompt</span>
+                </a>
+                <a href="#modulo3" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-vial w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 3: Laboratorio de IA</span>
+                </a>
+                <a href="#gemini-workspace" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-rocket w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 3.5: Gemini y Workspace</span>
+                </a>
+                 <a href="#nano-banano" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-palette w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 3.6: Nano Banano</span>
+                </a>
+                <a href="#modulo4" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-shield-alt w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 4: Navegación Segura</span>
+                </a>
+                <a href="#modulo5" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-infinity w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 5: El Futuro</span>
+                </a>
+            
+                <h3 class="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Módulos Prácticos</h3>
+                <a href="#modulo6" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-tasks w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 6: Misión Práctica</span>
+                </a>
+                <a href="#modulo7" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-question-circle w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 7: Cuestionario</span>
+                </a>
+                <a href="#modulo8" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-map-signs w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 8: Hoja de Ruta</span>
+                </a>
+                <a href="#modulo9" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-star w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Módulo 9: Valoración</span>
+                </a>
+            
+                <h3 class="px-4 pt-4 pb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Recursos</h3>
+                 <a href="#glosario" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-book w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Glosario de Términos</span>
+                </a>
+                <a href="#propiedad" class="nav-link flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-gray-100">
+                    <i class="fas fa-gavel w-6 text-center text-lg mr-3 text-gray-500"></i>
+                    <span>Propiedad Intelectual</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main
+class="flex-1 lg:ml-72 p-4 sm:p-6 md:p-10">
+            <div
+class="max-w-4xl mx-auto">
+
+               
+<header class="mb-10 text-center slide-in">
+                   
+<h1 class="text-4xl md:text-5xl font-bold text-[#0A2342]
+leading-tight">Curso Magistral: Tu Hoja de Ruta Personal en
+IA</h1>
+                   
+               
+</header>
+
+                <div
+class="space-y-12">
+                   
+<article id="intro" class="article-card
+scroll-mt-20">
+                    
+   <h3 class="text-3xl font-bold text-[#0A2342] mb-4">Isidro bienvenido a tu nuevo presente</h3>
+                    
+   <div class="space-y-4 text-gray-700 text-justify">
+                    
+      <p>He revisado tus respuestas y he diseñado este curso
+especialmente para ti. Entiendo perfectamente tu contexto. Como
+Cirujano Vascular, tu tiempo es tu activo más valioso, y tu día a
+día transcurre entre la alta precisión del quirófano y la
+necesaria actualización a través de la lectura de artículos
+científicos.</p>
+                    
+      <p>Tu objetivo es claro y potente: no solo quieres
+entender la IA, sino convertirla en una herramienta estratégica para
+tu faceta de formador, para crear cursos, charlas y presentaciones de
+alto impacto. Quieres saber qué herramienta usar, cuándo y, sobre
+todo, cómo "hablarle" para obtener resultados de
+experto.</p>
+                    
+      <p>Mi misión es llevarte exactamente a ese punto. Vamos
+a transformar la IA de un concepto abstracto en tu asistente personal
+de investigación, docencia y comunicación.</p>
+                    
+   </div>
+                   
+</article>
+
+<article class="article-card scroll-mt-20">
+    <div class="flex items-center mb-4">
+        <i class="fas fa-play-circle card-icon text-blue-600"></i>
+        
+    </div>
+    <div class="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-xl">
+        <iframe 
+            class="absolute top-0 left-0 w-full h-full" 
+            src="https://www.youtube.com/embed/_GG2NReVYmQ?si=2kJng-fZDharv--H" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</article>
+
+                   
+<article id="modulo1" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-brain card-icon"></i>
+                    
+       <div>
+                    
+           <h3 class="text-3xl font-bold
+text-[#0A2342]">Módulo 1: Un Vistazo Bajo el Capó</h3>
+                    
+           <h4 class="text-xl font-semibold
+text-gray-700">¿Cómo "Piensa" una IA? La Analogía
+de la Red Neuronal</h4>
+                    
+       </div>
+                    
+   </div>
+                    
+   <p class="mb-6">Imagina una red de neuronas
+cerebrales. Una <strong>Red Neuronal Artificial</strong>
+es una versión matemática de eso. En tu campo, reconoces patrones
+en una ecografía Doppler. La IA hace algo similar, pero con
+datos.</p>
+   
+                    
+   <div class="flex flex-col md:flex-row items-center
+justify-center space-y-4 md:space-y-0 md:space-x-4 text-center
+text-sm">
+                    
+       <div class="w-full md:w-1/4 bg-blue-100 p-4 rounded-lg
+border border-blue-200 transform transition-transform
+hover:scale-105"><h5 class="font-bold
+text-blue-800">Entrada de Datos</h5><p
+class="text-blue-700 mt-1">Texto de un artículo sobre
+endoprótesis</p></div>
+                    
+       <div class="text-2xl font-bold text-gray-400">→</div>
+                    
+       <div class="w-full md:w-2/5 bg-blue-100 p-4 rounded-lg
+border border-blue-200 transform transition-transform
+hover:scale-105"><h5 class="font-bold
+text-blue-800">Procesamiento ("Capas Ocultas")</h5><p
+class="text-blue-700 mt-1">Análisis de millones de
+patrones lingüísticos</p></div>
+                    
+       <div class="text-2xl font-bold text-gray-400">→</div>
+                    
+       <div class="w-full md:w-1/4 bg-blue-100 p-4 rounded-lg
+border border-blue-200 transform transition-transform
+hover:scale-105"><h5 class="font-bold
+text-blue-800">Salida Relevante</h5><p
+class="text-blue-700 mt-1">Resumen preciso de las
+conclusiones</p></div>
+                    
+   </div>
+                   
+</article>
+
+                   
+<article id="modulo1-5" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-coins card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+1.5: La Moneda del Lenguaje - Entendiendo los Tokens</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Antes de dar instrucciones
+(prompts), necesitamos entender la "moneda" con la que
+comercian estas IAs: los <strong>Tokens</strong>. Son las
+piezas de sentido en las que la IA descompone el texto.</p>
+                    
+    <div class="bg-teal-100 border-l-4 border-[#00B5B5] p-4
+rounded-r-lg mb-6">
+                    
+        <p class="font-semibold text-[#1A535C]">Regla
+General: <strong>100 tokens equivalen aproximadamente a 75
+palabras.</strong></p>
+                    
+    </div>
+                    
+   <h4 class="text-xl font-semibold text-gray-700 mb-4">¿Por
+Qué son Tan Importantes?</h4>
+                    
+   <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    
+       <div class="border p-4 rounded-lg bg-gray-50 transform
+transition-transform hover:scale-105"><strong>1. Miden
+la "Memoria":</strong> Definen cuánta información
+puede "recordar" la IA en una conversación (Ventana de
+Contexto).</div>
+                    
+       <div class="border p-4 rounded-lg bg-gray-50 transform
+transition-transform hover:scale-105"><strong>2.
+Determinan el Costo:</strong> En versiones de pago, el coste se
+basa en el número total de tokens procesados (entrada +
+salida).</div>
+                    
+       <div class="border p-4 rounded-lg bg-gray-50 transform
+transition-transform hover:scale-105"><strong>3.
+Impactan la Velocidad:</strong> Más tokens requieren más
+tiempo de procesamiento.</div>
+                    
+   </div>
+                   
+</article>
+
+                   
+<article id="modulo2" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-pencil-alt card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+2: El Prompt - El Arte de Instruir</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Un <strong>prompt</strong>
+es la instrucción que le das a la IA. La diferencia entre un
+aficionado y un experto radica en la calidad de esa petición. Veamos
+un ejemplo práctico.</p>
+                    
+   <div class="border rounded-lg p-4 bg-gray-50">
+                    
+       <div class="flex border-b-2 mb-4"><button
+data-target="prompt-malo" class="prompt-btn active
+flex-1 p-3 font-semibold border-b-2">Malo</button><button
+data-target="prompt-bueno" class="prompt-btn flex-1
+p-3 font-semibold border-b-2
+border-transparent">Bueno</button><button
+data-target="prompt-excelente" class="prompt-btn
+flex-1 p-3 font-semibold border-b-2
+border-transparent">Experto</button></div>
+                    
+       <div id="prompt-content" class="min-h-[10rem]">
+                    
+           <div id="prompt-malo" class="prompt-panel"><p
+class="font-mono bg-gray-200 p-3 rounded text-sm mb-2">"háblame
+de trombosis venosa profunda"</p><p><strong
+class="text-red-600">Resultado:</strong> Una
+definición genérica, tipo Wikipedia, poco útil.</p></div>
+                    
+           <div id="prompt-bueno" class="prompt-panel
+hidden"><p class="font-mono bg-gray-200 p-3 rounded
+text-sm mb-2">"resume los puntos clave del diagnóstico
+y tratamiento de la trombosis venosa profunda"</p><p><strong
+class="text-amber-600">Resultado:</strong> Mejor.
+Una lista de puntos, pero genérica y sin público
+definido.</p></div>
+                    
+           <div id="prompt-excelente"
+class="prompt-panel hidden"><p class="font-mono
+bg-gray-200 p-3 rounded text-sm mb-2">"<strong>Actúa
+como un Catedrático de Cirugía Vascular...</strong> Mi tarea
+es crear el esquema para una presentación... dirigida a
+residentes... Genera un esquema con 5 diapositivas..."</p><p><strong
+class="text-green-600">Resultado:</strong> Un
+esquema estructurado, con el tono y nivel adecuados. Has ahorrado
+horas.</p></div>
+                    
+       </div>
+                    
+   </div>
+
+                    
+   <!-- Analizador de Prompts -->
+                    
+   <div class="mt-8 pt-8 border-t border-gray-200">
+                    
+       <h4 class="text-2xl font-semibold text-[#1A535C]
+mb-4">✨ Tu Asistente de Prompts con Gemini ✨</h4>
+                    
+       <p class="mb-4 text-sm text-gray-600">Pega tu
+propio prompt para ver cómo Gemini lo transforma en una versión de
+experto. Recuerda: ¡La clave está en los detalles!</p>
+                    
+       <textarea id="user-prompt" class="w-full
+h-32 p-3 border border-gray-300 rounded-lg focus:ring-2
+focus:ring-[#00B5B5] resize-y mb-4" placeholder="Escribe
+aquí tu prompt... por ejemplo: 'dame ideas para una charla sobre
+isquemia arterial'"></textarea>
+                    
+       <button id="analyze-prompt-btn"
+class="bg-[#0A2342] text-white font-bold px-6 py-3 rounded-full
+hover:bg-opacity-90 transition transform hover:scale-105 flex
+items-center justify-center space-x-2">
+                    
+           <div id="loading-spinner" class="hidden
+spinner"></div>
+                    
+           <span id="button-text">Analizar y Mejorar
+Prompt</span>
+                    
+       </button>
+                    
+       <div id="expert-prompt-container" class="mt-6
+p-4 bg-gray-100 border border-dashed border-gray-400 rounded-lg
+hidden">
+                    
+           <p class="text-sm text-gray-600 mb-2">Tu
+prompt experto:</p>
+                    
+           <pre id="expert-prompt" class="font-mono
+text-sm whitespace-pre-wrap text-gray-900"></pre>
+                    
+       </div>
+                    
+       <div id="error-message" class="mt-4
+text-red-500 text-sm hidden"></div>
+                    
+   </div>
+                   
+</article>
+
+<article class="article-card scroll-mt-20">
+    <div class="flex items-center mb-4">
+        <i class="fab fa-youtube card-icon text-red-600"></i>
+        <h3 class="text-3xl font-bold text-[#0A2342]">Vídeo de Apoyo: Los 3 Titanes de la IA</h3>
+    </div>
+    <p class="mb-6 text-gray-600">Para complementar la siguiente sección, aquí tienes un vídeo que explora las diferencias y fortalezas de Gemini, ChatGPT y Copilot de una manera visual y directa.</p>
+    <div class="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-xl">
+        <iframe 
+            class="absolute top-0 left-0 w-full h-full" 
+            src="https://www.youtube.com/embed/d1nnlLajgWY?si=Eb6ajA2oqEdrGn0V" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</article>
+                    
+                   
+<article id="modulo3" class="article-card
+scroll-mt-20">
+                    
+    <div class="flex items-center mb-4">
+                    
+        <i class="fas fa-vial card-icon"></i>
+                    
+        <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+3: Tu Laboratorio de IA</h3>
+                    
+    </div>
+                    
+    
+                    
+    <!-- Herramienta 1: NotebookLM -->
+                    
+    <div>
+                    
+          <h4 class="text-2xl font-bold text-gray-800
+mb-2">Herramienta 1: NOTEBOOKLM - Tu Asistente de
+Investigación Privado</h4>
+                    
+          <p class="text-gray-600 leading-relaxed mt-2 mb-4">
+                    
+                Esta es la herramienta que cambiará tu forma de
+interactuar con la literatura científica. Olvídala para preguntas
+generales; es tu especialista para analizar los documentos que
+<strong class="text-blue-600">tú</strong> le
+proporcionas.
+                    
+            </p>
+                    
+           
+                    
+          <h5 class="text-lg font-bold text-gray-700
+mb-2">¿Cómo Funciona?</h5>
+                    
+          <p class="mb-4">
+                    
+                Imagina un residente de último año, increíblemente
+rápido, al que le has dado una pila de 5, 10 o 20 artículos
+científicos. No sabe nada del mundo exterior. Su único universo de
+conocimiento son esos <em class="italic">papers</em>.
+<strong class="text-blue-600">NotebookLM</strong>
+funciona así: se "ancla" (<strong
+class="text-blue-600">grounds itself</strong>)
+exclusivamente a las fuentes que tú le subes (PDFs, texto, etc.).
+Esto elimina casi por completo el riesgo de "alucinaciones"
+o información inventada, ya que está obligado a basar cada
+respuesta en tus documentos y a citar la fuente exacta.
+                    
+            </p>
+
+                    
+          <h5 class="text-lg font-bold text-gray-700
+mb-2">Especialización:</h5>
+                    
+          <ul class="list-disc list-outside pl-5 space-y-2
+mb-4">
+                    
+                <li>Investigación con fuentes
+controladas.</li>
+                    
+                <li>Generación de resúmenes y notas basadas
+en múltiples documentos.</li>
+                    
+                <li>Creación de Glosarios, FAQs y esquemas a
+partir de tu propia biblioteca.</li>
+                    
+          </ul>
+
+                    
+          <h5 class="text-lg font-bold text-gray-700
+mb-2">Arsenal de Prompts para NotebookLM:</h5>
+                    
+          <p class="text-gray-500 italic mb-4">
+                    
+                (Escenario: Has subido 3 artículos recientes sobre
+nuevas técnicas de revascularización en pie diabético)
+                    
+            </p>
+                    
+          <div class="bg-gray-100 p-4 rounded-lg space-y-4">
+                    
+                <blockquote class="p-4 bg-white rounded-lg
+shadow border border-gray-200">
+                    
+                    <p class="font-bold text-sm
+text-[#0A2342]">Prompt Básico (Resumen de una fuente):</p>
+                    
+                    <pre class="font-mono text-xs bg-gray-200
+p-2 rounded mt-1">"Actúa como un analista de
+investigación médica. Del documento `[Nombre del Archivo
+1.pdf]`,\nextrae y resume en 5 puntos clave las conclusiones
+principales del autor."</pre>
+                    
+                </blockquote>
+                    
+                <blockquote class="p-4 bg-white rounded-lg
+shadow border border-gray-200">
+                    
+                    <p class="font-bold text-sm
+text-[#0A2342]">Prompt Intermedio (Síntesis de Múltiples
+Fuentes):</p>
+                    
+                    <pre class="font-mono text-xs bg-gray-200
+p-2 rounded mt-1">"Comparando los documentos `[Archivo
+1.pdf]`, `[Archivo 2.pdf]` y `[Archivo 3.pdf]`, \nidentifica los
+puntos de consenso y las principales discrepancias entre los autores
+respecto a la tasa de éxito de la técnica X."</pre>
+                    
+                </blockquote>
+                    
+                <blockquote class="p-4 bg-white rounded-lg
+shadow border border-gray-200">
+                    
+                    <p class="font-bold text-sm
+text-[#0A2342]">Prompt Avanzado (Creación de Contenido para
+Cursos):</p>
+                    
+                    <pre class="font-mono text-xs bg-gray-200
+p-2 rounded mt-1">"Basándote en la totalidad de las
+fuentes proporcionadas, genera un glosario con los 10 términos
+técnicos más importantes mencionados. \nPara cada término,
+proporciona una definición concisa extraída de los textos."</pre>
+                    
+                </blockquote>
+                    
+                <blockquote class="p-4 bg-white rounded-lg
+shadow border border-gray-200">
+                    
+                    <p class="font-bold text-sm
+text-[#0A2342]">Prompt Magistral (Preparación de
+Charlas):</p>
+                    
+                    <pre class="font-mono text-xs bg-gray-200
+p-2 rounded mt-1">"Genera una sección de 'Preguntas
+Frecuentes' (FAQ) que un residente podría tener después de leer
+estos tres artículos. \nCrea 5 preguntas y sus correspondientes
+respuestas, citando la página y el documento de origen para cada
+respuesta."</pre>
+                    
+                </blockquote>
+                    
+          </div>
+                    
+    </div>
+                    
+    
+                    
+    <hr class="my-8 border-t-2 border-dashed">
+
+                    
+    <!-- Titanes de IA -->
+                    
+    <div>
+                    
+        <h4 class="text-2xl font-semibold text-[#0A2342]
+mb-4">Módulo 3.1: Los 4 Titanes del Lenguaje - Tu Cuarteto de Asistentes Principales</h4>
+                    
+        <p class="mb-6">Isidro, en el mundo de la IA conversacional, hay cuatro titanes que debes dominar: **Copilot, ChatGPT, Gemini y Qwen**. Son tu equipo de consultores principales. Aunque a veces parezcan hacer lo mismo, sus arquitecturas y especializaciones los hacen idóneos para misiones diferentes. Vamos a diseccionarlos.</p>
+                    
+        
+                    
+        <!-- Copilot -->
+                    
+        <div class="mb-8 p-6 rounded-lg border bg-gray-50">
+                    
+            <h4 class="text-xl font-bold text-gray-800
+mb-2">Titán 1: COPILOT (de Microsoft) - El Asistente
+Pragmático Integrado</h4>
+            
+                    
+            <p class="mt-2 mb-4">Si Gemini es el polímata conectado y ChatGPT es el maestro literato, Copilot es el **ingeniero de sistemas pragmático**. Su diseño no gira en torno a una conversación abierta, sino en ser un **asistente funcional y omnipresente** dentro del ecosistema donde trabajas (Windows, Office).</p>
+                    
+            <h5 class="text-lg font-bold text-gray-700
+mb-2">Ventajas Tácticas Clave para Ti</h5>
+                    
+            <ul class="list-disc list-outside pl-5 space-y-2
+mb-4">
+                    
+                <li>**Integración Profunda:** Su mayor fortaleza. Puede "leer" tu contexto de trabajo (documentos, emails) para ayudarte.</li>
+                    
+                <li>**Acceso Gratuito a Modelos Premium:** Te da acceso sin coste a modelos potentes como GPT-4 y DALL-E 3 para imágenes.</li>
+                    
+                <li>**Respuestas con Fuentes por Defecto:** Al basarse en el buscador Bing, casi siempre cita sus fuentes, lo cual es crucial para la verificación de datos.</li>
+                    
+            </ul>
+
+            <h5 class="text-lg font-bold text-gray-700 mb-2">Arsenal de Prompts para Copilot:</h5>
+            <div class="bg-gray-100 p-4 rounded-lg space-y-4">
+                <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Resumen Rápido de Contenido Web:</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Actúa como un analista médico. Resume en 3 puntos clave el contenido de esta página sobre los últimos avances en stents farmacoactivos: [pegar URL]"</pre>
+                </div>
+                <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Creación de Imágenes para Presentaciones:</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Genera una imagen fotorrealista de una arteria femoral con una placa de ateroma calcificada, vista en sección transversal. Estilo ilustración médica para una presentación."</pre>
+                </div>
+                 <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Productividad (Versión Pro en Office):</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Basado en el documento 'resumen_congreso.docx' que tengo abierto, crea un borrador de 5 diapositivas en PowerPoint."</pre>
+                </div>
+            </div>
+                    
+            <h5 class="text-lg font-bold text-gray-700
+mt-4 mb-2">Veredicto y Tácticas de Uso:</h5>
+                    
+            <p class="mb-4"><strong>Rol en tu
+Arsenal:</strong> Tu **Asistente de Productividad Diaria y
+Verificación Rápida**. Úsalo para consultas rápidas, resumir
+páginas web y, si inviertes en la versión Pro, para automatizar
+tareas en Word, PowerPoint y Outlook.</p>
+                    
+        </div>
+
+                    
+        <!-- ChatGPT -->
+                    
+        <div class="mb-8 p-6 rounded-lg border bg-gray-50">
+                    
+            <h4 class="text-xl font-bold text-gray-800
+mb-2">Titán 2: ChatGPT (de OpenAI) - El Maestro de la
+Conversación y la Escritura</h4>
+             
+                    
+            <p class="mt-2 mb-4">ChatGPT fue el modelo que lo cambió todo. Es el estándar de oro en cuanto a la calidad y naturalidad de la conversación. Es tu orador, tu guionista y tu experto en comunicación, capaz de adaptar su tono con una precisión asombrosa.</p>
+                    
+            <h5 class="text-lg font-bold text-gray-700
+mb-2">Especialización y Ventajas Clave:</h5>
+                    
+            <ul class="list-disc list-outside pl-5 space-y-2
+mb-4">
+                    
+                <li>**Calidad de Prosa y Tono:** Es inigualable para generar textos que suenan "humanos", adoptando el rol que le pidas con gran fidelidad.</li>
+                    
+                <li>**Creatividad y Nuances:** Brilla en la creación de guiones, explicaciones con analogías y cualquier tarea que requiera un toque de creatividad.</li>
+                    
+                <li>**Ecosistema Maduro (Versión de Pago):** La suscripción a Plus desbloquea un universo de "GPTs" personalizados para tareas increíblemente específicas.</li>
+                    
+            </ul>
+            
+            <h5 class="text-lg font-bold text-gray-700 mb-2">Arsenal de Prompts para ChatGPT:</h5>
+            <div class="bg-gray-100 p-4 rounded-lg space-y-4">
+                <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Creación de Contenido para Charlas:</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Actúa como un ponente experto en Cirugía Vascular. Escribe la introducción para una charla de 15 minutos sobre 'Manejo endovascular del trauma aórtico'. El tono debe ser autoritario pero didáctico. Empieza con una pregunta retórica para captar la atención."</pre>
+                </div>
+                <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Explicaciones Creativas (Analogías):</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Necesito explicar el concepto de 'endofuga tipo II' a un estudiante de medicina. Genera tres analogías diferentes, fuera del ámbito médico, que ilustren cómo funciona este fenómeno de forma simple y memorable."</pre>
+                </div>
+                 <div class="bg-gray-200 rounded-lg p-3">
+                    <p class="font-bold text-sm text-[#0A2342] mb-1">Elaboración de Guiones para Vídeos:</p>
+                    <pre class="font-mono text-xs whitespace-pre-wrap">"Genera un guion para un vídeo de 2 minutos explicando los beneficios de la compresión neumática intermitente para pacientes con linfedema. Estructúralo en: Introducción, Cómo funciona, Beneficios y Llamada a la acción."</pre>
+                </div>
+            </div>
+
+            <h5 class="text-lg font-bold text-gray-700
+mt-4 mb-2">Veredicto y Tácticas de Uso:</h5>
+                    
+            <p class="mb-4"><strong>Rol en tu
+Arsenal:</strong> Tu **Redactor Jefe y Guionista Creativo**.
+Úsalo cuando necesites desarrollar el contenido de una charla,
+escribir un texto con un tono específico, o explorar ideas de forma
+creativa. Es tu mejor aliado para el *storytelling*.</p>
+                    
+        </div>
+
+                    
+        <!-- Gemini -->
+                    
+        <div class="p-6 rounded-lg border bg-gray-50">
+                    
+            <h4 class="text-xl font-bold text-gray-800
+mb-2">Titán 3: El Ecosistema Gemini - Motores y Taller</h4>
+             
+                    
+            <p class="mt-2 mb-4">Piensa en ellos de
+esta manera: dos son los <strong>"motores"</strong>
+(los modelos de IA) y uno es el <strong>"taller"</strong>
+(la herramienta para usar esos motores).</p>
+                    
+            
+                    
+            <h5 class="text-lg font-bold text-gray-700 mb-4
+text-center">Resumen de las Diferencias Clave</h5>
+                    
+            <div class="overflow-x-auto mb-6">
+                    
+                <table class="w-full text-sm text-left
+text-gray-600">
+                    
+                    <thead class="text-xs text-gray-700
+uppercase bg-gray-200">
+                    
+                        <tr>
+                    
+                            <th scope="col" class="px-4
+py-3">Característica</th>
+                    
+                            <th scope="col" class="px-4
+py-3">Gemini 1.5 Flash</th>
+                    
+                            <th scope="col" class="px-4
+py-3">Gemini 1.5 Pro</th>
+                    
+                            <th scope="col" class="px-4
+py-3">Google AI Studio</th>
+                    
+                        </tr>
+                    
+                    </thead>
+                    
+                    <tbody>
+                    
+                        <tr class="bg-white border-b"><td
+class="px-4 py-3 font-medium">¿Qué es?</td><td
+class="px-4 py-3">Un modelo de IA (el motor)</td><td
+class="px-4 py-3">Un modelo de IA (el motor)</td><td
+class="px-4 py-3">Una herramienta web (el
+taller)</td></tr>
+                    
+                        <tr class="bg-gray-50 border-b"><td
+class="px-4 py-3 font-medium">Punto Fuerte</td><td
+class="px-4 py-3">Velocidad y Eficiencia</td><td
+class="px-4 py-3">Rendimiento y Razonamiento</td><td
+class="px-4 py-3">Prototipado Rápido</td></tr>
+                    
+                        <tr class="bg-white border-b"><td
+class="px-4 py-3 font-medium">Objetivo Principal</td><td
+class="px-4 py-3">Tareas de alto volumen</td><td
+class="px-4 py-3">Tareas complejas</td><td
+class="px-4 py-3">Explorar, probar y
+desarrollar</td></tr>
+                    
+                        <tr class="bg-gray-50 border-b"><td
+class="px-4 py-3 font-medium">Costo</td><td
+class="px-4 py-3">Muy bajo</td><td class="px-4
+py-3">Más alto que Flash</td><td class="px-4
+py-3">Gratuito para empezar</td></tr>
+                    
+                        <tr class="bg-white"><td
+class="px-4 py-3 font-medium">Ventana de
+Contexto</td><td class="px-4 py-3">Hasta 1
+millón de tokens</td><td class="px-4 py-3">Hasta
+1-2 millones de tokens</td><td class="px-4 py-3">Usa
+la de los modelos</td></tr>
+                    
+                    </tbody>
+                    
+                </table>
+                    
+            </div>
+
+                    
+           <h5 class="text-lg font-bold text-gray-700
+mb-2">Análisis Detallado y Casos de Uso</h5>
+                    
+            <div class="space-y-3">
+                    
+               <details class="glossary-term"><summary><strong>1.
+Los Motores: Gemini 1.5 Flash vs. Pro</strong></summary>
+                    
+                   <div class="glossary-term-content">
+                    
+                       <p class="font-semibold text-base
+text-gray-800">Gemini 1.5 Flash</p>
+                    
+                       <p class="mb-2"><strong>Punto
+Fuerte: Velocidad y Eficiencia.</strong> Ideal para
+aplicaciones que necesitan responder rápidamente a muchas
+solicitudes. A pesar de ser más "ligero", mantiene una
+alta calidad y una enorme ventana de contexto de 1 millón de
+tokens.</p>
+                    
+                       <p class="font-semibold">¿Cuándo
+usarlo?</p>
+                    
+                       <ul class="list-disc pl-5 text-sm">
+                    
+                           <li>Aplicaciones de Chatbot a Gran
+Escala.</li>
+                    
+                           <li>Resumen de Texto en Tiempo
+Real.</li>
+                    
+                           <li>Extracción de Datos y
+Etiquetado a gran volumen.</li>
+                    
+                       </ul>
+                    
+                       <hr class="my-4">
+                    
+                       <p class="font-semibold text-base
+text-gray-800">Gemini 1.5 Pro</p>
+                    
+                       <p class="mb-2"><strong>Punto
+Fuerte: Rendimiento y Razonamiento Profundo.</strong> Sobresale
+en la comprensión de contextos complejos, la resolución de
+problemas de lógica y la generación de respuestas de alta calidad y
+matizadas.</p>
+                    
+                        <p class="font-semibold">¿Cuándo
+usarlo?</p>
+                    
+                       <ul class="list-disc pl-5 text-sm">
+                    
+                           <li>Análisis complejo de documentos
+científicos, informes o contratos.</li>
+                    
+                           <li>Resolución de problemas de
+código avanzado.</li>
+                    
+                           <li>Generación de contenido técnico
+o creativo de alta calidad.</li>
+                    
+                       </ul>
+                    
+                   </div>
+                    
+               </details>
+                    
+               <details class="glossary-term"><summary><strong>2.
+El Taller: Google AI Studio</strong></summary>
+                    
+                   <div class="glossary-term-content">
+                    
+                       <p class="mb-2">No es un
+modelo, sino una <strong>plataforma de desarrollo basada en la
+web</strong>. Es un "banco de pruebas" que te permite
+acceder y experimentar con los modelos de Google de una manera fácil
+y visual.</p>
+                    
+                       <p class="font-semibold">¿Cuándo
+usarlo?</p>
+                    
+                        <ul class="list-disc pl-5 text-sm">
+                    
+                           <li><strong>Exploración
+Inicial:</strong> Para entender qué pueden hacer los
+modelos.</li>
+                    
+                           <li><strong>Ingeniería de
+Prompts:</strong> Es la herramienta perfecta para diseñar y
+perfeccionar el prompt que necesitas.</li>
+                    
+                           <li><strong>Creación de
+Prototipos Rápidos:</strong> Para validar una idea antes de
+construir una aplicación completa.</li>
+                    
+                           <li><strong>Obtención de
+Claves API:</strong> Para obtener fácilmente el código y la
+clave API para integrar ese comportamiento en tu propia
+aplicación.</li>
+                    
+                       </ul>
+                    
+                       <div class="glossary-analogy">
+                    
+                           <p><strong>En
+resumen:</strong> Siempre empiezas en <strong>Google AI
+Studio</strong> para explorar y desarrollar tu idea. Luego,
+cuando integras el modelo en tu aplicación final, es cuando eliges
+si tu código llamará a la API de <strong>Flash</strong>
+(para velocidad) o de <strong>Pro</strong> (para
+potencia).</p>
+                    
+                       </div>
+                    
+                   </div>
+                    
+               </details>
+                    
+            </div>
+                    
+        </div>
+
+        <!-- Qwen -->
+        <div class="mt-8 p-6 rounded-lg border bg-gray-50">
+            <h4 class="text-xl font-bold text-gray-800 mb-2">Titán 4: Análisis de Qwen - La IA de Alibaba</h4>
+            <p class="mt-2 mb-4">Qwen, la inteligencia artificial desarrollada por el gigante tecnológico chino Alibaba, ha irrumpido en el panorama global de los modelos de lenguaje de gran tamaño (LLM), presentándose como una alternativa robusta y versátil a las opciones de empresas como OpenAI, Google y Meta.</p>
+            
+            <h5 class="text-lg font-bold text-gray-700 mb-2">¿Qué es Qwen?</h5>
+            <p class="mb-4">Qwen, cuyo nombre completo es Tongyi Qianwen, es una familia de modelos de inteligencia artificial generativa. Como un LLM, ha sido entrenado con una vasta cantidad de texto y código. Su capacidad más destacada es su naturaleza multimodal, lo que significa que puede procesar y generar no solo texto, sino también imágenes, audio y código de programación. Alibaba ha puesto a disposición del público varios modelos de la familia Qwen, algunos de ellos de código abierto, lo que fomenta su uso y desarrollo por parte de la comunidad global. Además, ofrece una interfaz de chat gratuita y accesible para que los usuarios puedan interactuar directamente con la IA.</p>
+
+            <h5 class="text-lg font-bold text-gray-700 mb-2">Usos Principales de Qwen</h5>
+            <p class="mb-2">La versatilidad de Qwen le permite ser aplicada en una amplia gama de sectores y tareas, tanto para usuarios individuales como para empresas.</p>
+            <ul class="list-disc list-outside pl-5 space-y-2 mb-4">
+                <li><strong>Para Empresas:</strong> Potenciar asistentes conversacionales, generar contenido para marketing, optimizar procesos internos y ayudar en el desarrollo de software.</li>
+                <li><strong>Para Usuarios Individuales:</strong> Funcionar como asistente personal, tutor virtual y herramienta para potenciar la creatividad generando textos, imágenes e incluso música.</li>
+            </ul>
+
+            <h5 class="text-lg font-bold text-gray-700 mb-2">Pros y Contras de Qwen</h5>
+            
+            <h6 class="font-bold text-gray-800 mt-4 mb-2">Pros (Ventajas):</h6>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm">
+                <li><strong>Multimodalidad:</strong> Capacidad para procesar texto, imágenes y audio.</li>
+                <li><strong>Código Abierto:</strong> Fomenta la innovación y transparencia.</li>
+                <li><strong>Acceso Gratuito:</strong> Democratiza el acceso a la IA avanzada.</li>
+                <li><strong>Soporte Multilingüe:</strong> Funciona en más de 29 idiomas, incluido el español.</li>
+                <li><strong>Eficiencia:</strong> Arquitectura optimizada para un mejor rendimiento.</li>
+                <li><strong>Coherencia:</strong> Mantiene bien el hilo en conversaciones largas.</li>
+            </ul>
+
+            <h6 class="font-bold text-gray-800 mt-4 mb-2">Contras (Desventajas):</h6>
+            <ul class="list-disc list-outside pl-5 space-y-1 text-sm">
+                <li><strong>Razonamiento Avanzado Limitado:</strong> Puede tener dificultades con tareas lógicas complejas.</li>
+                <li><strong>Posibles Sesgos:</strong> Puede generar respuestas imprecisas o sesgadas.</li>
+                <li><strong>Privacidad y Censura:</strong> Inquietudes por ser una tecnología desarrollada en China.</li>
+                <li><strong>Calidad del Código Mejorable:</strong> El código generado puede no ser siempre el más refinado.</li>
+                <li><strong>Dependencia del Ecosistema de Alibaba:</strong> Para un uso avanzado, puede requerir mayor integración con la nube de Alibaba.</li>
+            </ul>
+            <p class="mt-4 text-sm"><strong>En conclusión,</strong> Qwen se posiciona como un competidor serio, destacando por su enfoque multimodal y su accesibilidad. Aunque presenta ciertas limitaciones, su continuo desarrollo sugiere que jugará un papel cada vez más importante en el futuro de la IA.</p>
+        </div>
+                    
+    </div>
+                   
+</article>
+                    
+                   
+<article id="gemini-workspace" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-rocket card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+3.5: Gemini en Workspace - Tu "Súper-Residente"
+Digital</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Esta es la funcionalidad que, para
+tu objetivo específico de crear cursos, representa el mayor salto de
+productividad. Gemini para Workspace (una suscripción de pago) se
+integra directamente en Docs, Gmail, Sheets, y Slides.</p>
+                    
+   <ul class="list-disc list-outside pl-5 space-y-3">
+                    
+       <li><strong>En Gmail:</strong> Pídele:
+"Redacta un correo profesional a un colega invitándole a
+colaborar en una charla sobre el tratamiento del aneurisma de aorta.
+Menciona mi interés en su último paper de 2023."</li>
+                    
+       <li><strong>En Google Docs:</strong>
+Selecciona un texto técnico y denso de 2,000 palabras y pídele:
+"Resume este texto en 3 bullets clave" o "Re-escribe
+este párrafo en un tono más accesible para estudiantes de
+medicina."</li>
+                    
+       <li><strong>En Google Slides:</strong> A
+partir de un documento de texto, pídele: "Crea una presentación
+de 7 diapositivas a partir de este documento." Generará un
+borrador completo, incluyendo imágenes de stock relevantes.</li>
+                    
+   </ul>
+                   
+</article>
+
+                   
+<article id="nano-banano" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-palette card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+3.6: Nano Banano - Tu Estudio de Diseño Gráfico</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Isidro, bienvenido a tu estudio de
+diseño gráfico personal. "Nano Banano" (el modelo
+`gemini-2.5-flash-image-preview`) es la herramienta que te permitirá
+crear imágenes, ilustraciones y diagramas médicos de alta calidad a
+partir de simples descripciones de texto. Es como tener a un
+ilustrador médico como Frank H. Netter a tu disposición, 24/7.</p>
+                    
+   
+                    
+   <h4 class="text-2xl font-semibold text-[#1A535C] mb-4">La
+Anatomía de un Prompt de Imagen Perfecto</h4>
+                    
+   <p class="mb-6">Crear la imagen perfecta no es
+magia, es metodología. Igual que en una cirugía, seguir una
+secuencia ordenada garantiza los mejores resultados. Un prompt de
+experto se construye en capas, de lo general a lo específico:</p>
+                    
+   
+                    
+   <div class="my-6 p-4 bg-teal-100 border-2 border-dashed
+border-teal-500 rounded-lg text-center shadow-lg transform transition
+hover:scale-105 cursor-pointer">
+                    
+       <p class="font-mono text-sm md:text-lg text-teal-800
+tracking-wide">
+                    
+           [SUJETO] + [ACCIÓN/DETALLE] + [ESTILO] +
+[ILUMINACIÓN/COMPOSICIÓN]
+                    
+       </p>
+                    
+   </div>
+
+                    
+   <h5 class="text-lg font-bold text-gray-700 mb-2">Desglose
+de la Fórmula para Uso Médico:</h5>
+                    
+   <ul class="list-disc list-outside pl-5 space-y-2 mb-4
+text-sm">
+                    
+       <li><strong>SUJETO:</strong> Lo más
+específico posible. No digas "arteria", di "Aorta
+abdominal infrarrenal con un aneurisma fusiforme".</li>
+                    
+       <li><strong>ACCIÓN/DETALLE:</strong> ¿Qué
+está pasando? "mostrando la colocación de una endoprótesis
+bifurcada". Añade contexto: "con flujo sanguíneo visible
+y sin endofugas".</li>
+                    
+       <li><strong>ESTILO:</strong> ¡Tu director
+de arte personal! "Ilustración médica detallada, estilo
+Netter", "modelo 3D fotorrealista", "diagrama
+esquemático limpio con etiquetas claras", "dibujo a tinta
+sobre fondo blanco".</li>
+                    
+       <li><strong>ILUMINACIÓN/COMPOSICIÓN:</strong>
+El toque cinematográfico. "Vista en sección transversal",
+"iluminación de estudio dramática", "aislado sobre
+fondo negro", "resolución 4K, hiperdetallado".</li>
+                    
+   </ul>
+
+                    
+    <h5 class="text-lg font-bold text-gray-700 mb-2">Ejemplos
+Prácticos:</h5>
+                    
+    <div class="bg-gray-100 p-4 rounded-lg space-y-4">
+                    
+       <blockquote class="p-4 bg-white rounded-lg shadow
+border border-gray-200">
+                    
+           <p class="font-bold text-sm text-[#0A2342]">Para
+una charla a residentes:</p>
+                    
+           <pre class="font-mono text-xs bg-gray-200 p-2
+rounded mt-1">"Diagrama esquemático y limpio de una
+fístula arteriovenosa para hemodiálisis, mostrando la arteria, la
+vena y la anastomosis. Estilo infografía moderna, con etiquetas
+claras para 'Flujo arterial', 'Anastomosis' y 'Vena arterializada'.
+Aislado sobre fondo blanco."</pre>
+                    
+       </blockquote>
+                    
+        <blockquote class="p-4 bg-white rounded-lg shadow
+border border-gray-200">
+                    
+           <p class="font-bold text-sm text-[#0A2342]">Para
+una presentación de alto impacto:</p>
+                    
+           <pre class="font-mono text-xs bg-gray-200 p-2
+rounded mt-1">"Modelo 3D fotorrealista de la anatomía
+del arco aórtico con sus ramas principales. Iluminación
+cinematográfica que resalta las texturas. Hiperdetallado, calidad de
+render de octane, 8K."</pre>
+                    
+       </blockquote>
+    </div>
+    
+    <!-- Interactive Image Generator -->
+    <div class="image-generator-container mt-8 pt-8 border-t border-gray-200">
+        <h4 class="text-2xl font-semibold text-[#1A535C] mb-4">🎨 Tu Taller de Creación Visual</h4>
+        <p class="mb-4 text-sm text-gray-600">Ahora es tu turno. Usa la fórmula que acabas de aprender para generar tu propia ilustración médica. ¡Experimenta con los estilos!</p>
+        
+        <textarea id="image-prompt" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B5B5] resize-y mb-4" placeholder="Escribe aquí tu prompt de imagen..."></textarea>
+        
+        <button id="generate-image-btn" class="bg-[#0A2342] text-white font-bold px-6 py-3 rounded-full hover:bg-opacity-90 transition transform hover:scale-105 flex items-center justify-center space-x-2">
+            <div id="image-spinner" class="hidden spinner"></div>
+            <span id="image-button-text">Generar Imagen</span>
+        </button>
+        
+        <div id="image-output" class="mt-6 p-4 rounded-lg flex items-center justify-center">
+            <p class="placeholder-text">Tu imagen aparecerá aquí...</p>
+        </div>
+        <div id="image-error-message" class="mt-4 text-red-500 text-sm hidden"></div>
+    </div>
+
+</article>
+                    
+                   
+<article id="modulo4" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-shield-alt card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+4: Navegación Segura y Ética</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Como médico, la confidencialidad
+y la ética son pilares de tu profesión. Con la IA, debemos aplicar
+los mismos principios. Esta es tu "técnica estéril" para
+el mundo digital.</p>
+                    
+   <ul class="space-y-4">
+                    
+       <li class="flex items-start">
+                    
+           <i class="fas fa-user-secret text-red-500 mt-1
+mr-3"></i>
+                    
+           <div>
+                    
+               <h4 class="font-bold
+text-red-700">ANONIMIZACIÓN DE DATOS: Regla de Oro</h4>
+                    
+               <p>NUNCA introduzcas datos de pacientes reales
+en un chat de IA público. Ni nombres, ni fechas, ni historiales.
+Para pedir ayuda sobre un caso, transfórmalo en un escenario
+hipotético: "Imagina un varón de 65 años con historial de
+tabaquismo..." en lugar de "Mi paciente Juan Pérez, nacido
+el 03/05/1959...".</p>
+                    
+           </div>
+                    
+       </li>
+                    
+       <li class="flex items-start">
+                    
+           <i class="fas fa-balance-scale text-amber-500 mt-1
+mr-3"></i>
+                    
+           <div>
+                    
+               <h4 class="font-bold text-amber-700">SESGOS
+Y VERIFICACIÓN: El Escepticismo Clínico</h4>
+                    
+               <p>La IA aprende de datos existentes en
+internet, que pueden tener sesgos. Considera siempre la respuesta de
+la IA como la opinión de un residente entusiasta, pero no como la de
+un catedrático. Siempre, siempre, verifica la información crítica
+(dosis, tratamientos) con fuentes primarias y tu propio juicio
+clínico.</p>
+                    
+           </div>
+                    
+       </li>
+                    
+       <li class="flex items-start">
+                    
+           <i class="fas fa-copyright text-blue-500 mt-1
+mr-3"></i>
+                    
+           <div>
+                    
+               <h4 class="font-bold text-blue-700">DERECHOS
+DE AUTOR Y PLAGIO: Integridad Académica</h4>
+                    
+               <p>Usa la IA como un asistente para generar
+borradores e ideas, no como un sustituto de tu autoría. Si te basas
+en un texto generado por IA para una publicación, asegúrate de
+reescribirlo y validarlo para que refleje tu propia voz y
+conocimiento. Las imágenes generadas suelen ser libres de uso, pero
+siempre es bueno revisar los términos de servicio de la
+herramienta.</p>
+                    
+           </div>
+                    
+       </li>
+                    
+   </ul>
+                   
+</article>
+                    
+                   
+<article id="modulo5" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-infinity card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+5: El Futuro es Ahora</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">La IA no es una moda pasajera; es
+el nuevo estetoscopio. Lo que hemos visto es solo la punta del
+iceberg. Aquí te presento un vistazo a lo que está a la vuelta de
+la esquina y cómo te impactará:</p>
+                    
+   <div class="space-y-4">
+                    
+       <div class="p-4 bg-gray-50 rounded-lg">
+                    
+           <h4 class="font-semibold text-lg
+text-gray-800">Agentes de IA Autónomos</h4>
+                    
+           <p class="text-sm">Imagina darle una
+misión a tu IA: "Monitoriza los 5 journals de cirugía vascular
+más importantes y prepárame un resumen semanal de cualquier
+artículo sobre enfermedad arterial periférica". Estos agentes
+trabajarán en segundo plano para ti, 24/7.</p>
+                    
+       </div>
+                    
+       <div class="p-4 bg-gray-50 rounded-lg">
+                    
+           <h4 class="font-semibold text-lg text-gray-800">IA
+en Diagnóstico por Imagen</h4>
+                    
+           <p class="text-sm">Modelos de IA que
+pueden analizar un AngioTAC o una ecografía Doppler y no solo
+identificar patologías con una precisión sobrehumana, sino también
+predecir su evolución o el riesgo de rotura de un aneurisma
+basándose en miles de casos previos.</p>
+                    
+       </div>
+                    
+       <div class="p-4 bg-gray-50 rounded-lg">
+                    
+           <h4 class="font-semibold text-lg
+text-gray-800">Simulación y Planificación Quirúrgica</h4>
+                    
+           <p class="text-sm">Pronto podrás subir la
+anatomía vascular de un paciente a una IA y pedirle que simule
+diferentes abordajes quirúrgicos o la colocación de distintas
+endoprótesis, mostrándote los posibles resultados y complicaciones
+antes de entrar a quirófano.</p>
+                    
+       </div>
+                    
+   </div>
+                   
+</article>
+
+                   
+<article id="modulo6" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-tasks card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+6: Misión Práctica - Tu Primera Creación con IA</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">La teoría sin práctica es
+estéril. Tu misión, si decides aceptarla, es aplicar todo lo
+aprendido en un ejercicio práctico que simula tu objetivo real:
+crear material de formación.</p>
+                    
+   <div class="bg-blue-100 border-l-4 border-blue-500 p-6
+rounded-r-lg">
+                    
+       <h4 class="text-xl font-bold text-blue-800
+mb-2">Objetivo de la Misión:</h4>
+                    
+       <p class="text-blue-900 mb-4">Crear el
+esqueleto de una charla de 15 minutos titulada "Nuevos
+Horizontes en el Tratamiento del Pie Diabético Isquémico",
+dirigida a residentes de cirugía vascular.</p>
+                    
+       <h4 class="text-xl font-bold text-blue-800 mb-2">Pasos
+a Seguir:</h4>
+                    
+       <ol class="list-decimal list-inside space-y-3
+text-blue-900">
+                    
+           <li><strong>Paso 1 (Investigación con
+NotebookLM):</strong> Descarga 2-3 artículos recientes sobre
+el tema. Súbelos a NotebookLM y usa un prompt avanzado para generar
+un resumen comparativo y una lista de 5 puntos clave.</li>
+                    
+           <li><strong>Paso 2 (Esquema con
+Gemini/ChatGPT):</strong> Usa el "Prompt Experto" del
+Módulo 2 para pedirle a tu Titán preferido que genere un esquema de
+5 diapositivas basado en los puntos clave que extrajiste.</li>
+                    
+           <li><strong>Paso 3 (Creación de Imagen con
+Nano Banano):</strong> Para la diapositiva sobre "Técnicas
+de Revascularización", crea una imagen usando un prompt
+detallado. Por ejemplo, un "diagrama esquemático de un bypass
+distal en la arteria pedia". (¡Puedes usar el generador del
+módulo 3.6!).</li>
+                    
+           <li><strong>Paso 4 (Opcional -
+Workspace):</strong> Si tienes acceso, importa tu esquema a
+Google Docs y luego pídele a Gemini en Slides que cree la
+presentación.</li>
+                    
+       </ol>
+                    
+   </div>
+                   
+</article>
+                    
+                   
+<article id="modulo7" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-question-circle card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+7: Cuestionario de Autoevaluación</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Pongamos a prueba tus nuevos
+conocimientos. No te preocupes, no hay nota. El objetivo es reforzar
+los conceptos clave.</p>
+                    
+   <div id="quiz-container" class="space-y-8">
+                    
+       <!-- Question 1 -->
+                    
+       <div class="quiz-question">
+                    
+           <p class="font-semibold mb-3">1. Has
+subido 5 PDFs a NotebookLM. ¿De dónde sacará la información para
+responder a tus preguntas?</p>
+                    
+           <div class="space-y-2">
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">a) De todo internet, usando los PDFs
+como contexto.</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg" data-correct="true">b) Única
+y exclusivamente de los 5 PDFs que has subido.</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">c) De los PDFs y de tu historial de
+Google Drive.</button>
+                    
+           </div>
+                    
+           <p class="quiz-feedback mt-2 text-sm hidden"></p>
+                    
+       </div>
+                    
+        <!-- Question 2 -->
+                    
+       <div class="quiz-question">
+                    
+           <p class="font-semibold mb-3">2. ¿Cuál
+de estos prompts es el más efectivo para generar un esquema de una
+charla?</p>
+                    
+           <div class="space-y-2">
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">a) "Esquema sobre
+aneurismas"</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg" data-correct="true">b)
+"Actúa como un formador de cirujanos vasculares. Crea un
+esquema para una charla de 10 minutos para residentes sobre el
+diagnóstico del aneurisma de aorta abdominal, incluyendo 3 puntos
+clave y una pregunta final."</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">c) "Dame los puntos más
+importantes del diagnóstico y tratamiento del AAA."</button>
+                    
+           </div>
+                    
+           <p class="quiz-feedback mt-2 text-sm hidden"></p>
+                    
+       </div>
+                    
+        <!-- Question 3 -->
+                    
+       <div class="quiz-question">
+                    
+           <p class="font-semibold mb-3">3. ¿Cuál
+es la regla de oro al usar IA con información potencialmente
+sensible?</p>
+                    
+           <div class="space-y-2">
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">a) Usar solo los modelos de IA de pago
+porque son más seguros.</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg">b) Borrar el chat después de
+introducir la información.</button>
+                    
+               <button class="quiz-option w-full text-left
+p-3 border rounded-lg" data-correct="true">c)
+Anonimizar siempre los datos y nunca introducir información de
+identificación personal.</button>
+                    
+           </div>
+                    
+           <p class="quiz-feedback mt-2 text-sm hidden"></p>
+                    
+       </div>
+                    
+   </div>
+                    
+   <div id="quiz-results" class="mt-8 text-center
+hidden">
+                    
+       <h4 class="text-xl font-bold">Resultados</h4>
+                    
+       <p id="quiz-score" class="text-2xl font-bold
+text-[#00B5B5]"></p>
+                    
+   </div>
+                   
+</article>
+                    
+                   
+<article id="modulo8" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-map-signs card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+8: Tu Hoja de Ruta Personalizada</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Isidro, este curso es el punto de
+partida. Para integrar la IA de forma sostenible en tu flujo de
+trabajo, te propongo esta hoja de ruta:</p>
+                    
+   <ul class="list-decimal list-outside pl-5 space-y-4">
+                    
+       <li>
+                    
+           <h4 class="font-semibold">Semanas 1-2:
+Inmersión y Hábito</h4>
+                    
+           <p class="text-sm">Elige una herramienta
+(recomiendo Gemini por su versatilidad) y úsala para
+<strong>una</strong> tarea pequeña cada día. Ej:
+"Resume este email" o "Dame 3 ideas para el título de
+mi próxima charla". El objetivo es hacer el primer clic sin
+pensarlo.</p>
+                    
+       </li>
+                    
+        <li>
+                    
+           <h4 class="font-semibold">Semanas 3-4: El
+Asistente de Investigación</h4>
+                    
+           <p class="text-sm">Dedica este tiempo a
+dominar <strong>NotebookLM</strong>. Cada vez que leas un
+paper, súbelo. Antes de la cuarta semana, intenta tener al menos
+10-15 artículos en un "Notebook" y practica hacerle
+preguntas complejas que crucen información entre ellos.</p>
+                    
+       </li>
+                    
+        <li>
+                    
+           <h4 class="font-semibold">Mes 2:
+Automatización de Contenidos</h4>
+                    
+           <p class="text-sm">Ahora que tienes la
+base, enfócate en tu objetivo principal. Para tu próxima
+presentación, oblígate a usar la IA para generar el primer borrador
+del esquema y al menos dos imágenes o diagramas. Mide el tiempo que
+te ahorras.</p>
+                    
+       </li>
+                    
+        <li>
+                    
+           <h4 class="font-semibold">Mes 3 en
+adelante: Exploración Avanzada</h4>
+                    
+           <p class="text-sm">Considera la
+suscripción a Gemini Advanced o ChatGPT Plus. Explora los GPTs
+personalizados y las extensiones de Workspace. Busca un área muy
+específica de tu trabajo (ej: redacción de informes, análisis de
+datos de investigación) y profundiza en cómo la IA puede
+optimizarla.</p>
+                    
+       </li>
+                    
+   </ul>
+                   
+</article>
+                    
+                    
+<article id="modulo9" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-star card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Módulo
+9: Tu Valoración es Clave</h3>
+                    
+   </div>
+                    
+   <p class="mb-6">Tu feedback es esencial para
+mejorar. Por favor, valora la utilidad de este curso para tus
+objetivos profesionales.</p>
+                    
+   <div class="text-center">
+                    
+       <div class="star-rating inline-flex flex-row-reverse
+text-4xl text-gray-300">
+                    
+           <input type="radio" id="star5"
+name="rating" value="5" /><label
+for="star5" title="5 stars"><i class="fas
+fa-star"></i></label>
+                    
+           <input type="radio" id="star4"
+name="rating" value="4" /><label
+for="star4" title="4 stars"><i class="fas
+fa-star"></i></label>
+                    
+           <input type="radio" id="star3"
+name="rating" value="3" /><label
+for="star3" title="3 stars"><i class="fas
+fa-star"></i></label>
+                    
+           <input type="radio" id="star2"
+name="rating" value="2" /><label
+for="star2" title="2 stars"><i class="fas
+fa-star"></i></label>
+                    
+           <input type="radio" id="star1"
+name="rating" value="1" /><label
+for="star1" title="1 star"><i class="fas
+fa-star"></i></label>
+                    
+       </div>
+                    
+       <p id="rating-feedback" class="mt-4 text-lg
+font-semibold text-[#00B5B5] h-6"></p>
+                    
+   </div>
+
+    <!-- Suggestions Box -->
+    <div class="mt-8 pt-6 border-t border-gray-200">
+        <label for="suggestions" class="block mb-2 font-semibold text-gray-800 text-lg">Sugerencias de Mejora</label>
+        <p class="text-sm text-gray-600 mb-4">¿Qué podríamos mejorar? ¿Qué te ha gustado más o menos? Tu opinión es muy valiosa.</p>
+        <textarea id="suggestions" name="suggestions" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B5B5] resize-y" placeholder="Escribe tus sugerencias aquí..."></textarea>
+        <div class="text-right mt-4">
+             <button class="bg-[#0A2342] text-white font-bold px-6 py-2 rounded-full hover:bg-opacity-90 transition transform hover:scale-105">
+                Enviar Sugerencias
+            </button>
+        </div>
+    </div>
+                   
+</article>
+
+                    
+<article id="glosario" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-book card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold text-[#0A2342]">Glosario
+Interactivo de Términos Clave</h3>
+                    
+   </div>
+                    
+   <p class="mb-6 text-gray-600">Haz clic en cada
+nivel y término para expandir y ver la definición detallada. Este
+glosario está diseñado para que puedas explorar los conceptos a tu
+propio ritmo.</p>
+                    
+   
+                    
+   <div class="space-y-4">
+                    
+       <!-- Nivel 1 -->
+                    
+       <details class="glossary-level">
+                    
+           <summary>Nivel 1: Los Pilares
+Fundamentales</summary>
+                    
+           <div class="glossary-content space-y-3">
+                    
+               <details
+class="glossary-term"><summary><strong>Inteligencia
+Artificial (IA)</strong></summary><div
+class="glossary-term-content"><p>Una rama de la
+informática dedicada a la creación de máquinas y software que
+exhiben inteligencia humana, como el razonamiento, el aprendizaje, la
+percepción y la resolución de problemas.</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>IA
+Débil (o Estrecha)</strong></summary><div
+class="glossary-term-content"><p>El tipo de IA que
+vemos hoy. Está diseñada y entrenada para una tarea específica
+(ej. reconocimiento facial, jugar ajedrez, conducir un
+coche).</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>IA
+Fuerte (o General - AGI)</strong></summary><div
+class="glossary-term-content"><p>Una forma teórica
+de IA que poseería la capacidad de entender, aprender y aplicar su
+inteligencia para resolver cualquier problema, de forma
+indistinguible de un ser humano.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Aprendizaje
+Automático (Machine Learning - ML)</strong></summary><div
+class="glossary-term-content"><p>Un subconjunto de
+la IA. En lugar de programar reglas explícitas, se proporcionan
+algoritmos con grandes cantidades de datos para que "aprendan"
+a realizar una tarea por sí mismos, identificando patrones.</p><div
+class="glossary-analogy"><p><strong>Analogía:</strong>
+No le dices a un niño "si tiene orejas puntiagudas y bigotes,
+es un gato". Le muestras miles de fotos de gatos y aprende a
+reconocerlos por sí mismo.</p></div></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Aprendizaje
+Profundo (Deep Learning)</strong></summary><div
+class="glossary-term-content"><p>Un subconjunto
+del Machine Learning que utiliza Redes Neuronales Artificiales con
+muchas capas (capas "profundas"). Es la fuerza motriz
+detrás de los avances más espectaculares de la IA reciente
+(ChatGPT, Midjourney).</p><div
+class="glossary-analogy"><p><strong>Jerarquía:</strong>
+IA > Machine Learning > Deep Learning. Piensa en ellos como
+muñecas rusas, una dentro de la otra.</p></div></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Ciencia
+de Datos (Data Science)</strong></summary><div
+class="glossary-term-content"><p>Campo
+interdisciplinario que utiliza datos para generar conocimiento y
+tomar decisiones. Utiliza técnicas de IA y ML, pero también incluye
+la preparación de datos, el análisis estadístico y la
+visualización.</p></div></details>
+                    
+           </div>
+                    
+       </details>
+                    
+       <!-- Nivel 2 -->
+                    
+       <details class="glossary-level">
+                    
+           <summary>Nivel 2: El Mundo de los Modelos de
+Lenguaje (LLMs)</summary>
+                    
+           <div class="glossary-content space-y-3">
+                    
+               <details
+class="glossary-term"><summary><strong>Prompt</strong></summary><div
+class="glossary-term-content"><p>La instrucción,
+pregunta o entrada de texto que le proporcionas a un modelo de IA
+para que genere una respuesta.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Token</strong></summary><div
+class="glossary-term-content"><p>La unidad
+fundamental de texto que un LLM procesa. No es exactamente una
+palabra; puede ser una palabra corta, una sílaba o incluso un signo
+de puntuación. (En español, 1 token ≈ 0.5-0.7
+palabras).</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>LLM
+(Large Language Model)</strong></summary><div
+class="glossary-term-content"><p>El "motor"
+o "cerebro" de la IA conversacional. Es un modelo de
+aprendizaje profundo masivo, entrenado con una cantidad ingente de
+texto de internet para comprender la gramática, los hechos, los
+estilos de razonamiento y los matices del lenguaje
+humano.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Modelo
+de Fundación (Foundation Model)</strong></summary><div
+class="glossary-term-content"><p>Un LLM muy grande
+y potente que ha sido pre-entrenado con datos a escala web. Sirve
+como base ("fundación") para luego ser adaptado a tareas
+más específicas mediante Fine-Tuning. (Ej: GPT-4, Llama
+3).</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Alucinación</strong></summary><div
+class="glossary-term-content"><p>Un error en el
+que la IA genera información falsa, inventada o que no se basa en
+sus datos de entrenamiento, pero la presenta con total confianza como
+si fuera un hecho verídico.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Grounding
+(Anclaje)</strong></summary><div
+class="glossary-term-content"><p>Técnica para
+reducir las alucinaciones. Consiste en forzar al modelo a basar sus
+respuestas únicamente en un conjunto de datos o documentos
+específicos que se le proporcionan, evitando que utilice su
+conocimiento general (y potencialmente erróneo).</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Multimodalidad</strong></summary><div
+class="glossary-term-content"><p>La capacidad de
+un modelo para comprender, procesar y generar información a través
+de diferentes formatos o "modalidades" a la vez, como
+texto, imágenes, audio, video y código.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Ventana
+de Contexto (Context Window)</strong></summary><div
+class="glossary-term-content"><p>La memoria a
+corto plazo del modelo. Es la cantidad máxima de información
+(medida en tokens) que el modelo puede "recordar" en una
+conversación. Una ventana más grande permite conversaciones más
+largas y coherentes sin que el modelo "olvide" lo que se
+dijo al principio.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Afinamiento
+(Fine-Tuning)</strong></summary><div
+class="glossary-term-content"><p>Proceso de tomar
+un modelo de fundación pre-entrenado y seguir entrenándolo con un
+conjunto de datos más pequeño y especializado para que se vuelva
+experto en una tarea concreta o adopte un estilo
+específico.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Ingeniería
+de Prompts (Prompt Engineering)</strong></summary><div
+class="glossary-term-content"><p>El arte y la
+técnica de diseñar y refinar los prompts para obtener las
+respuestas más precisas, útiles y deseadas de un modelo de
+IA.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Generación
+Aumentada por Recuperación (RAG)</strong></summary><div
+class="glossary-term-content"><p>Una técnica
+avanzada de Grounding. Antes de responder, el modelo primero
+"recupera" (busca) la información más relevante de una
+base de datos específica (como los documentos de una empresa) y
+luego "aumenta" su conocimiento con esa información para
+generar una respuesta precisa y basada en hechos.</p></div></details>
+                    
+           </div>
+                    
+       </details>
+                    
+       <!-- Nivel 3 -->
+                    
+       <details class="glossary-level">
+                    
+           <summary>Nivel 3: Mecánica Interna del Aprendizaje
+Automático</summary>
+                    
+            <div class="glossary-content space-y-3">
+                    
+               <details
+class="glossary-term"><summary><strong>Tipos
+de Aprendizaje</strong></summary><div
+class="glossary-term-content"><p><strong>Supervisado:</strong>
+El modelo aprende de datos "etiquetados". Cada dato de
+entrada tiene una respuesta correcta asociada. (Ej: Entrenar con
+miles de emails etiquetados como "spam" o "no
+spam").</p><p class="mt-2"><strong>No
+Supervisado:</strong> El modelo aprende de datos "no
+etiquetados", buscando patrones y estructuras ocultas por sí
+mismo. (Ej: Agrupar clientes con comportamientos de compra similares
+sin saber de antemano cuáles son los grupos).</p><p
+class="mt-2"><strong>Por Refuerzo (Reinforcement
+Learning):</strong> El modelo (llamado "agente")
+aprende a través de prueba y error. Recibe "recompensas"
+por acciones correctas y "castigos" por las incorrectas.
+(Ej: Entrenar una IA para jugar a un videojuego).</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>Red
+Neuronal Artificial (RNA)</strong></summary><div
+class="glossary-term-content"><p><strong>Neurona
+(o Nodo):</strong> La unidad de cálculo básica de una red
+neuronal. Recibe entradas, las procesa y produce una salida.</p><p
+class="mt-2"><strong>Capa (Layer):</strong>
+Un conjunto de neuronas que operan juntas. Las redes profundas tienen
+una capa de entrada, múltiples capas ocultas y una capa de
+salida.</p><p class="mt-2"><strong>Peso
+(Weight) y Sesgo (Bias):</strong> Parámetros numéricos dentro
+de la red. Durante el entrenamiento, la red los ajusta para aprender.
+Son, en esencia, el "conocimiento" del modelo.</p><p
+class="mt-2"><strong>Función de
+Activación:</strong> Una función matemática dentro de cada
+neurona que decide si esta debe "activarse" y pasar
+información a la siguiente capa.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Arquitecturas
+Clave</strong></summary><div
+class="glossary-term-content"><p><strong>Transformer:</strong>
+La arquitectura revolucionaria detrás de todos los LLMs modernos
+(GPT, Gemini, etc.). Su innovación clave es el mecanismo de
+atención, que permite al modelo ponderar la importancia de
+diferentes palabras para comprender mejor el contexto.</p><p
+class="mt-2"><strong>Red Neuronal Convolucional
+(CNN):</strong> Una arquitectura especializada en el
+procesamiento de datos en forma de cuadrícula, como las imágenes.
+Es la tecnología principal detrás de la visión por
+computadora.</p><p class="mt-2"><strong>Red
+Neuronal Recurrente (RNN):</strong> Una arquitectura diseñada
+para manejar datos secuenciales, como texto. Ha sido superada en gran
+parte por los Transformers para el lenguaje.</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>El
+Proceso de Entrenamiento</strong></summary><div
+class="glossary-term-content"><p><strong>Función
+de Pérdida (Loss Function):</strong> Una fórmula que mide qué
+tan "equivocada" está la predicción del modelo. El
+objetivo es minimizar esta pérdida.</p><p
+class="mt-2"><strong>Optimización (ej. Gradiente
+Descendente):</strong> El algoritmo que ajusta los pesos y
+sesgos del modelo para reducir la pérdida. Es el proceso de
+"aprendizaje".</p><p class="mt-2"><strong>Época
+(Epoch):</strong> Una pasada completa del algoritmo de
+entrenamiento a través de todo el conjunto de datos.</p><p
+class="mt-2"><strong>Sobreajuste
+(Overfitting):</strong> Un error común donde el modelo
+"memoriza" los datos de entrenamiento en lugar de aprender
+patrones. Falla con datos nuevos.</p></div></details>
+                    
+           </div>
+                    
+       </details>
+                    
+        <!-- Nivel 4 -->
+                    
+       <details class="glossary-level">
+                    
+           <summary>Nivel 4: Implicaciones y Conceptos
+Avanzados</summary>
+                    
+           <div class="glossary-content space-y-3">
+                    
+               <details
+class="glossary-term"><summary><strong>Sesgo
+(Bias)</strong></summary><div
+class="glossary-term-content"><p>Una tendencia
+sistemática de un modelo de IA a producir resultados que son
+injustos o discriminatorios hacia ciertos grupos. Esto generalmente
+ocurre porque el modelo fue entrenado con datos que reflejaban sesgos
+humanos existentes.</p></div></details>
+                    
+               <details class="glossary-term"><summary><strong>IA
+Explicable (Explainable AI - XAI)</strong></summary><div
+class="glossary-term-content"><p>Un campo de
+investigación y un conjunto de técnicas destinadas a hacer que las
+decisiones de los modelos de "caja negra" (como las redes
+neuronales) sean comprensibles para los humanos.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Embedding
+(Incrustación o Vectorización)</strong></summary><div
+class="glossary-term-content"><p>El proceso de
+convertir datos complejos, como palabras, en una representación
+numérica (un vector). Las palabras con significados similares
+tendrán vectores cercanos. Es fundamental para que los modelos
+entiendan las relaciones semánticas.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Agente
+de IA (AI Agent)</strong></summary><div
+class="glossary-term-content"><p>Un sistema de IA
+que no solo responde, sino que puede tomar decisiones y realizar
+acciones de forma autónoma para lograr un objetivo. Puede
+interactuar con software, APIs o incluso el mundo
+real.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Alineación
+(Alignment)</strong></summary><div
+class="glossary-term-content"><p>El desafío de
+asegurar que los objetivos de los sistemas de IA avanzados estén
+alineados con los valores e intenciones humanas. Es un área crucial
+de la investigación en seguridad de la IA.</p></div></details>
+                    
+               <details
+class="glossary-term"><summary><strong>Ataque
+Adversario (Adversarial Attack)</strong></summary><div
+class="glossary-term-content"><p>La técnica de
+engañar a un modelo de IA introduciendo datos de entrada
+maliciosamente diseñados. (Ej: Cambiar unos pocos píxeles de una
+imagen de tal manera que un humano no note la diferencia, pero una IA
+la clasifique incorrectamente).</p></div></details>
+                    
+           </div>
+                    
+       </details>
+                    
+   </div>
+                   
+</article>
+
+                    
+<article id="propiedad" class="article-card
+scroll-mt-20">
+                    
+   <div class="flex items-center mb-4">
+                    
+       <i class="fas fa-gavel card-icon"></i>
+                    
+       <h3 class="text-3xl font-bold
+text-[#0A2342]">Propiedad Intelectual</h3>
+                    
+   </div>
+                    
+    <p class="text-sm text-gray-600 text-justify">Este curso ha
+sido generado y personalizado por una Inteligencia Artificial
+avanzada de Google, diseñado específicamente para los objetivos
+profesionales del Dr. Isidro. El contenido, estructura y ejemplos
+prácticos son para uso educativo personal y no deben ser
+distribuidos o reproducidos sin permiso. Todos los derechos
+reservados.</p>
+    <p class="text-sm text-gray-600 mt-4 text-justify">
+        ÁLVARO CABO CIUDAD. INGENIERO INFORMÁTICO, ESPECIALIZADO EN REDES Y CIBERSEGURIDAD.<br>
+        info@alvarocabo.com
+    </p>
+                   
+</article>
+
+               
+</div>
+            </div>
+        </main>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded',
+() => {
+
+    // --- Mobile Menu Functionality ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeMenu = document.getElementById('close-menu');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    const openMenu = () => {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+    };
+
+    const closeMenuFunc = () => {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+    };
+
+    menuToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFunc);
+    overlay.addEventListener('click', closeMenuFunc);
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('#sidebar nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) { // lg breakpoint
+                closeMenuFunc();
+            }
+        });
+    });
+
+    // --- Active Nav Link on Scroll ---
+    const sections = document.querySelectorAll('article[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-30% 0px -70% 0px' });
+
+    sections.forEach(section => observer.observe(section));
+
+
+    // --- Prompt Tabs Functionality ---
+    const promptBtns = document.querySelectorAll('.prompt-btn');
+    const promptPanels = document.querySelectorAll('.prompt-panel');
+
+    promptBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            promptBtns.forEach(pBtn => pBtn.classList.remove('active'));
+            btn.classList.add('active');
+
+            const targetId = btn.dataset.target;
+            promptPanels.forEach(panel => {
+                if (panel.id === targetId) {
+                    panel.classList.remove('hidden');
+                } else {
+                    panel.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // --- Gemini Prompt Analyzer ---
+    const analyzeBtn = document.getElementById('analyze-prompt-btn');
+    const userPromptTextarea = document.getElementById('user-prompt');
+    const expertPromptContainer = document.getElementById('expert-prompt-container');
+    const expertPromptEl = document.getElementById('expert-prompt');
+    const errorMessageEl = document.getElementById('error-message');
+    const spinner = document.getElementById('loading-spinner');
+    const buttonText = document.getElementById('button-text');
+
+    analyzeBtn.addEventListener('click', async () => {
+        const userPrompt = userPromptTextarea.value.trim();
+        if (!userPrompt) {
+            errorMessageEl.textContent = "Por favor, introduce un prompt para analizar.";
+            errorMessageEl.classList.remove('hidden');
+            return;
+        }
+
+        spinner.classList.remove('hidden');
+        buttonText.textContent = "Analizando...";
+        analyzeBtn.disabled = true;
+        errorMessageEl.classList.add('hidden');
+        expertPromptContainer.classList.add('hidden');
+
+        const systemPrompt = `Actúa como un experto mundial en "Prompt Engineering" especializado en el campo médico y académico. Tu tarea es transformar un prompt simple de un usuario en un prompt de nivel experto, estructurado y detallado que genere resultados de alta calidad de un LLM como Gemini.
+        
+        El prompt mejorado debe seguir esta estructura:
+        1.  **ROL (Persona):** Asigna un rol específico y con autoridad a la IA (Ej: "Actúa como un Catedrático de Cirugía Vascular especializado en docencia...").
+        2.  **TAREA:** Describe la tarea de forma clara y concisa (Ej: "Tu tarea es generar el esquema para una presentación...").
+        3.  **CONTEXTO:** Proporciona el contexto necesario (Ej: "La presentación durará 15 minutos...").
+        4.  **PÚBLICO OBJETIVO:** Define claramente a quién va dirigido el contenido (Ej: "...dirigida a residentes de cirugía vascular de 3er año.").
+        5.  **FORMATO DE SALIDA:** Especifica exactamente cómo quieres la respuesta (Ej: "Genera el esquema en formato de lista numerada con 5 puntos principales. Cada punto debe tener 3 sub-puntos.").
+        6.  **RESTRICCIONES/TONO:** Añade cualquier restricción o guía de estilo (Ej: "Utiliza un tono formal pero didáctico. Evita la jerga excesivamente compleja. Basa tus respuestas en evidencia científica actualizada hasta 2023.").
+
+        Transforma el siguiente prompt del usuario en un prompt experto siguiendo esta estructura. Devuelve únicamente el prompt mejorado, sin explicaciones adicionales.`;
+
+        try {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error de la API: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            const improvedPrompt = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (improvedPrompt) {
+                expertPromptEl.textContent = improvedPrompt;
+                expertPromptContainer.classList.remove('hidden');
+            } else {
+                throw new Error("No se recibió un prompt mejorado en la respuesta.");
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            errorMessageEl.textContent = "Lo siento, ha ocurrido un error al contactar con Gemini. Por favor, inténtalo de nuevo más tarde.";
+            errorMessageEl.classList.remove('hidden');
+        } finally {
+            spinner.classList.add('hidden');
+            buttonText.textContent = "Analizar y Mejorar Prompt";
+            analyzeBtn.disabled = false;
+        }
+    });
+
+    // --- Quiz Functionality ---
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+    const quizResultsContainer = document.getElementById('quiz-results');
+    const quizScoreEl = document.getElementById('quiz-score');
+    let score = 0;
+    let questionsAnswered = 0;
+
+    quizQuestions.forEach(question => {
+        const options = question.querySelectorAll('.quiz-option');
+        const feedback = question.querySelector('.quiz-feedback');
+        
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                // Prevent re-answering
+                if (question.dataset.answered) return;
+                question.dataset.answered = 'true';
+                questionsAnswered++;
+
+                const isCorrect = option.dataset.correct === 'true';
+
+                if (isCorrect) {
+                    option.classList.add('correct');
+                    feedback.textContent = "¡Correcto! Excelente trabajo.";
+                    feedback.classList.add('text-green-600');
+                    score++;
+                } else {
+                    option.classList.add('incorrect');
+                    const correctOption = question.querySelector('[data-correct="true"]');
+                    correctOption.classList.add('correct');
+                    feedback.textContent = "No es del todo correcto. La respuesta correcta está resaltada en verde.";
+                    feedback.classList.add('text-red-600');
+                }
+                
+                feedback.classList.remove('hidden');
+                options.forEach(btn => btn.disabled = true);
+
+                if (questionsAnswered === quizQuestions.length) {
+                    showResults();
+                }
+            });
+        });
+    });
+
+    function showResults() {
+        quizScoreEl.textContent = `Has acertado ${score} de ${quizQuestions.length} preguntas.`;
+        quizResultsContainer.classList.remove('hidden');
+    }
+
+    // --- Star Rating Functionality ---
+    const ratingInputs = document.querySelectorAll('.star-rating input');
+    const ratingFeedback = document.getElementById('rating-feedback');
+    const feedbackMessages = {
+        1: "Gracias, tomaré nota para mejorar.",
+        2: "Aprecio tus comentarios.",
+        3: "¡Me alegra que te haya sido útil!",
+        4: "¡Excelente! Gracias por tu valoración.",
+        5: "¡Fantástico! Me alegro de haber cumplido tus expectativas."
+    };
+
+    ratingInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const value = e.target.value;
+            ratingFeedback.textContent = feedbackMessages[value] || "";
+        });
+    });
+
+    // --- Nano Banano Image Generator ---
+    const generateImageBtn = document.getElementById('generate-image-btn');
+    const imagePromptTextarea = document.getElementById('image-prompt');
+    const imageOutputDiv = document.getElementById('image-output');
+    const imageErrorMessageEl = document.getElementById('image-error-message');
+    const imageSpinner = document.getElementById('image-spinner');
+    const imageButtonText = document.getElementById('image-button-text');
+
+    // Pre-fill with an example prompt
+    imagePromptTextarea.value = "Diagrama esquemático y limpio de una fístula arteriovenosa para hemodiálisis, mostrando la arteria, la vena y la anastomosis. Estilo infografía moderna, con etiquetas claras para 'Flujo arterial', 'Anastomosis' y 'Vena arterializada'. Aislado sobre fondo blanco.";
+
+    generateImageBtn.addEventListener('click', async () => {
+        const userPrompt = imagePromptTextarea.value.trim();
+        if (!userPrompt) {
+            imageErrorMessageEl.textContent = "Por favor, introduce una descripción para generar la imagen.";
+            imageErrorMessageEl.classList.remove('hidden');
+            return;
+        }
+
+        imageSpinner.classList.remove('hidden');
+        imageButtonText.textContent = "Generando...";
+        generateImageBtn.disabled = true;
+        imageErrorMessageEl.classList.add('hidden');
+        imageOutputDiv.innerHTML = '<div class="spinner animate-spin mx-auto"></div>';
+
+        try {
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+            
+            const payload = {
+                instances: [{ prompt: userPrompt }],
+                parameters: { "sampleCount": 1 }
+            };
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error de la API: ${response.status} ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            const base64Data = result.predictions?.[0]?.bytesBase64Encoded;
+
+            if (base64Data) {
+                const imageUrl = `data:image/png;base64,${base64Data}`;
+                imageOutputDiv.innerHTML = `<img src="${imageUrl}" alt="Imagen generada por IA" class="w-full h-auto rounded-lg shadow-md">`;
+            } else {
+                throw new Error("No se recibió una imagen en la respuesta.");
+            }
+
+        } catch (error) {
+            console.error("Error al generar imagen:", error);
+            imageErrorMessageEl.textContent = "Lo siento, ha ocurrido un error al generar la imagen. Por favor, revisa el prompt o inténtalo de nuevo más tarde.";
+            imageErrorMessageEl.classList.remove('hidden');
+            imageOutputDiv.innerHTML = '<p class="placeholder-text">Error al generar. Tu imagen aparecería aquí...</p>';
+        } finally {
+            imageSpinner.classList.add('hidden');
+            imageButtonText.textContent = "Generar Imagen";
+            generateImageBtn.disabled = false;
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
