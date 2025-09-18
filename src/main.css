@@ -1,0 +1,299 @@
+body {
+           
+    font-family: 'Inter', sans-serif;
+               
+    background-color: #f0f4f8;
+                color: #334155;
+            }
+            .nav-link.active {
+               
+    background-color: #1A535C;
+                color:
+    white;
+               
+    font-weight: 600;
+            }
+           
+    .nav-link.active i {
+                color: white;
+            }
+    
+    .prompt-btn.active {
+               
+    background-color: #0A2342;
+                color:
+    white;
+               
+    border-color: #0A2342;
+            }
+            .quiz-option
+    {
+               
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+               
+    position: relative;
+            }
+           
+    .quiz-option.correct {
+               
+    background-color: #d1fae5;
+               
+    border-color: #10b981;
+                color:
+    #065f46;
+            }
+           
+    .quiz-option.incorrect {
+               
+    background-color: #fee2e2;
+               
+    border-color: #ef4444;
+                color:
+    #991b1b;
+            }
+           
+    .quiz-option:disabled {
+                cursor:
+    not-allowed;
+                opacity:
+    0.7;
+            }
+            .spinner {
+    border: 4px solid #f3f3f3; border-top: 4px solid #00B5B5;
+    border-radius: 50%; width: 24px; height: 24px; animation: spin 1s
+    linear infinite; }
+            @keyframes
+    spin {
+                0% {
+    transform: rotate(0deg); }
+                100% {
+    transform: rotate(360deg); }
+            }
+           
+    .article-card {
+               
+    background-color: white;
+                padding:
+    2.5rem;
+               
+    border-radius: 1.5rem;
+               
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px
+    rgba(0, 0, 0, 0.05);
+               
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow
+    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+           
+    .article-card:hover {
+               
+    transform: translateY(-5px);
+               
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px
+    rgba(0, 0, 0, 0.04);
+            }
+            .card-icon {
+                color:
+    #00B5B5;
+               
+    font-size: 2.5rem;
+               
+    margin-right: 1.5rem;
+            }
+           
+    .prompt-panel {
+               
+    animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes
+    fadeIn {
+                from {
+    opacity: 0; transform: translateY(10px); }
+                to {
+    opacity: 1; transform: translateY(0); }
+            }
+            .slide-in {
+               
+    animation: slideIn 0.8s ease-out;
+            }
+            @keyframes
+    slideIn {
+                from {
+    opacity: 0; transform: translateX(-50px); }
+                to {
+    opacity: 1; transform: translateX(0); }
+            }
+            .star-rating
+    label {
+               
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+                cursor:
+    pointer;
+            }
+            .star-rating
+    input[type="radio"] {
+                display:
+    none;
+            }
+            .star-rating
+    label:hover,
+            .star-rating
+    label:hover ~ label,
+            .star-rating
+    input[type="radio"]:checked ~ label {
+                color:
+    #00B5B5;
+            }
+            .star-rating
+    label:hover {
+               
+    transform: scale(1.1);
+            }
+            /* ---
+    Interactive Glossary Styles --- */
+           
+    .glossary-level, .glossary-term {
+               
+    border-radius: 0.75rem;
+               
+    overflow: hidden;
+                border:
+    1px solid #e2e8f0;
+               
+    transition: all 0.3s ease-in-out;
+            }
+           
+    .glossary-level {
+                
+    background-color: #f8fafc;
+            }
+           
+    .glossary-level[open] {
+               
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0,
+    0, 0, 0.06);
+            }
+           
+    .glossary-level > summary {
+               
+    font-size: 1.125rem;
+               
+    font-weight: 700;
+               
+    background-color: #f1f5f9;
+                color:
+    #1e293b;
+            }
+           
+    .glossary-term {
+               
+    background-color: white;
+               
+    margin-top: 0.75rem;
+            }
+           
+    .glossary-level > summary, .glossary-term > summary {
+                cursor:
+    pointer;
+                padding:
+    1rem;
+               
+    list-style: none; /* remove default marker */
+               
+    position: relative;
+               
+    padding-left: 2.75rem;
+               
+    transition: background-color 0.2s ease-in-out;
+            }
+           
+    .glossary-level > summary:hover, .glossary-term > summary:hover
+    {
+               
+    background-color: #e2e8f0;
+            }
+           
+    .glossary-level > summary::before, .glossary-term >
+    summary::before {
+                content:
+    '\f078'; /* Font Awesome chevron-down */
+               
+    font-family: 'Font Awesome 6 Free';
+               
+    font-weight: 900;
+               
+    position: absolute;
+                left:
+    1rem;
+                top:
+    50%;
+               
+    transform: translateY(-50%) rotate(0deg);
+               
+    transition: transform 0.3s ease-in-out;
+               
+    font-size: 0.9rem;
+                color:
+    #00B5B5;
+            }
+           
+    .glossary-level[open] > summary::before, .glossary-term[open] >
+    summary::before {
+               
+    transform: translateY(-50%) rotate(-180deg);
+            }
+           
+    .glossary-content {
+                padding:
+    1.5rem;
+               
+    font-size: 0.9rem;
+            }
+           
+    .glossary-term-content {
+                padding:
+    1rem 1.5rem;
+               
+    border-top: 1px solid #e2e8f0;
+               
+    background-color: #fdfdff;
+               
+    line-height: 1.6;
+            }
+           
+    .glossary-analogy {
+               
+    margin-top: 0.75rem;
+                padding:
+    0.75rem 1rem;
+               
+    background-color: #f0fdfa;
+               
+    border-left: 4px solid #14b8a6;
+               
+    font-style: italic;
+                color:
+    #134e4a;
+            }
+            /* Image Generator Styles */
+            .image-generator-container {
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid #e2e8f0;
+            }
+            #image-output {
+                background-color: #f1f5f9;
+                border: 2px dashed #cbd5e1;
+                min-height: 20rem; /* 320px */
+                transition: background-color 0.3s;
+            }
+            #image-output img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0.5rem;
+            }
+            #image-output .placeholder-text {
+                color: #64748b;
+            }
+            
